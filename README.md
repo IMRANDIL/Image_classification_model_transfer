@@ -1,5 +1,8 @@
 # Image Classification Model Training
 
+![Figure_001](https://github.com/user-attachments/assets/7857f003-656b-41d4-ba76-30172133ae62)
+
+
 This project focuses on building an image classification model using a custom dataset. The repository is structured to manage configurations, training logs, and model storage, with Python scripts for training and utility functions.
 
 ## Project Structure
