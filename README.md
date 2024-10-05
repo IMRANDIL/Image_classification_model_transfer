@@ -53,7 +53,7 @@ To train the image classification model, execute the `main.py` file located in t
 
 ```bash
 cd src
-python main.py
+python main.py --config ..\config\config.yaml
 ```
 
 This will start the training process by calling the `train_the_model()` function from `train.py`.
