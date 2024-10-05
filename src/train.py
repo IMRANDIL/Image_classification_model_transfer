@@ -42,11 +42,13 @@ def prepare_data(config):
     # Load dataset
     dataset = datasets.ImageFolder(root=config['data']['dataset_path'], transform=transform)
     print(f"Classes:-------->>>>>>>>>>>>>>>>>>>> {dataset.classes}")
+    print('traindataset ----->>>>>>>>>>>>>>>', dataset.class_to_idx)  # Should output something like {'cats': 0, 'dogs': 1}
     # Split the dataset
     train_size = int(config['split']['train'] * len(dataset))
     val_size = int(config['split']['val'] * len(dataset))
     test_size = len(dataset) - train_size - val_size
     train_dataset, val_dataset, test_dataset = random_split(dataset, [train_size, val_size, test_size])
+   
 
     train_loader = DataLoader(train_dataset, batch_size=config['hyperparameters']['batch_size'], shuffle=True)
     val_loader = DataLoader(val_dataset, batch_size=config['hyperparameters']['batch_size'], shuffle=False)
@@ -83,7 +85,7 @@ def train_model(train_loader, val_loader, model, criterion, optimizer, scheduler
 
         for batch_idx, (inputs, labels) in enumerate(train_loader):
             inputs, labels = inputs.to(config['device']), labels.to(config['device'])
-
+            print(f"Labels:::::::::::::::::::: {labels}")  # Check the labels
             # Zero the parameter gradients
             optimizer.zero_grad()
 
@@ -182,8 +184,8 @@ def evaluate_model(test_loader, model, criterion, config):
     print(classification_report(all_labels, all_preds))
 
     # Confusion matrix
-    cm = confusion_matrix(all_labels, all_preds)
-    plot_confusion_matrix(cm, config['model']['num_classes'])  # Custom utility to plot confusion matrix
+    # cm = confusion_matrix(all_labels, all_preds)
+    plot_confusion_matrix(all_labels, all_preds, classes=config['model']['num_classes'])
 
 
 def train_the_model():
