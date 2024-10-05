@@ -31,7 +31,7 @@ To run the project, ensure you have Python installed. Optionally, it's recommend
 
 1. **Clone the repository**:
    ```bash
-   git clone https://github.com/IMRANDIL/image-classification-project.git
+   git clone https://github.com/IMRANDIL/Image_classification_model_transfer.git
    cd image-classification-project
    ```
 
