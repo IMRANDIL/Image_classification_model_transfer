@@ -11,7 +11,7 @@ import os
 # import matplotlib.pyplot as plt
 # import seaborn as sns
 from utils import plot_confusion_matrix  # Utility for visualization
-
+print('available or not --------->>>>>>>>>>>>>>>>>', torch.cuda.is_available())
 
 def load_config():
     """Load the configuration file."""
@@ -41,7 +41,7 @@ def prepare_data(config):
 
     # Load dataset
     dataset = datasets.ImageFolder(root=config['data']['dataset_path'], transform=transform)
-
+    print(f"Classes:-------->>>>>>>>>>>>>>>>>>>> {dataset.classes}")
     # Split the dataset
     train_size = int(config['split']['train'] * len(dataset))
     val_size = int(config['split']['val'] * len(dataset))
@@ -188,6 +188,7 @@ def evaluate_model(test_loader, model, criterion, config):
 
 def train_the_model():
     config = load_config()
+    print(config)
     writer = initialize_tensorboard(config['tensorboard']['log_dir'])
 
     train_loader, val_loader, test_loader = prepare_data(config)
